@@ -99,14 +99,32 @@ async def on_message(message):
         f"No fuckass cunt bitch",
         f"What the actual fuck {message.author}"
         ]
-        if message.content.startswith('+=JenqaDm'):
-            if dm_jenqa == False:
+
+        with open('jenqadm.txt', 'r') as x:
+            dm_jenqa_fin = x.read()
+            print(dm_jenqa_fin)
+            if dm_jenqa_fin == 'T':
                 dm_jenqa = True
-                await client.send_message(message.channel, 'Enabled Dm')
-            elif dm_jenqa == True:
+            elif dm_jenqa_fin == 'F':
                 dm_jenqa = False
-                await client.send_message(message.channel, 'Disabled Dm')
-            return dm_jenqa
+
+        if message.content.startswith('+=jenqadm'):
+            if message.author.id == '267068037264441344':
+
+                if dm_jenqa == False:
+                    dm_jenqa = True
+                    with open('jenqadm.txt', 'w') as p:
+                        p.write('T')
+                    await client.send_message(message.channel, 'Enabled Dm')
+                elif dm_jenqa == True:
+                    dm_jenqa = False
+                    with open('jenqadm.txt', 'w') as p:
+                        p.write('F')
+                    await client.send_message(message.channel, 'Disabled Dm')
+                return dm_jenqa
+            else:
+                await client.send_message(message.channel, "Bro you ain't jenqa")
+
         #Dms Cracc (me)
         msg = f'{message.author}: {message.content}'
         crac = await client.get_user_info('399392841308045312')
