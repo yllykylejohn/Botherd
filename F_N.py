@@ -23,7 +23,7 @@ global leaderlord
 leaderlord = 0
 global hhh
 global winning_boi
-winning_boi = 'Default cunt'
+winning_boi = 'Nobody'
 randomhexcolors = [0x00ff15,
                    0xeeff00,
                    0x001dff,
@@ -212,6 +212,18 @@ async def on_message(message):
                 await client.send_message(message.channel, f'Successfully changed temp to {temp_for_list[1]}')
                 return temp_for_bot
 
+        if message.content.startswith('+=train'):
+            if message.author.id == '399392841308045312':
+                x = message.content.split()
+                #note: add more options
+                if x[1] == 'insult':
+                    textgen.train_from_file('Swear.txt', epoch=0)
+                    await client.send_message(message.channel, f'Starting to train {x[1]}.')
+
+                else:
+                    await client.send_message(message.channel, 'Invalid type of training')
+
+
 
         if message.content.startswith('+=setscore') == True:
             if message.channel.id == '389803272413773825':
@@ -294,6 +306,7 @@ async def on_message(message):
             helpmessage.add_field(name='+=dm', value=str('The bot dms you random stuff/messages'), inline=False)
             helpmessage.add_field(name='+=tts (message)', value=str('Bot converts the message into speech and sends the file to you (now works in vc too)'), inline=False)
             helpmessage.add_field(name='+=mentionlater (seconds) (message)', value=str('Bot sends you a message in the following seconds you input'), inline=False)
+            helpmessage.add_field(name='+=speak (message)', value=str('Bot will respond to you with a message'))
             await client.send_message(message.channel, embed=helpmessage)
 
 
